@@ -8,6 +8,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import online.arapov.dsystems.core.styles.ButtonStyle
+import online.arapov.dsystems.theme.v1.MaterialButtonStyles
+import online.arapov.dsystems.theme.v1.MaterialTheme
 
 object AlnfButtonStyles {
 
@@ -34,7 +36,18 @@ object AlnfButtonStyles {
             iconSize = 22.dp,
         )
 
+    val secondary: ButtonStyle
+        @Composable
+        @ReadOnlyComposable
+        get() = primary.copy(
+            backgroundColor = AlnfTheme.colors.blue100,
+            contentColor = AlnfTheme.colors.blue700,
+            pressedColor = AlnfTheme.colors.blue700,
+            disabledContentColor = AlnfTheme.colors.warmGray4,
+            disabledBackgroundColor = AlnfTheme.colors.gray28,
+        )
 
-    @Composable
+
+            @Composable
     fun default(): ButtonStyle = primary
 }

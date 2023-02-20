@@ -34,6 +34,17 @@ object MaterialButtonStyles {
             iconSize = 22.dp,
         )
 
+    val secondary: ButtonStyle
+        @Composable
+        @ReadOnlyComposable
+        get() = primary.copy(
+            backgroundColor = MaterialTheme.colors.black.copy(alpha = 0f),
+            contentColor = MaterialTheme.colors.blue,
+            pressedColor = MaterialTheme.colors.blue.copy(alpha = 0.24f),
+            disabledContentColor = MaterialTheme.colors.gray28,
+            disabledBackgroundColor = MaterialTheme.colors.black.copy(alpha = 0f),
+        )
+
 
     @Composable
     fun default(): ButtonStyle = primary

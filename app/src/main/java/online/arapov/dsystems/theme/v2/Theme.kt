@@ -26,7 +26,6 @@ fun AlnfTheme(
     }
 }
 
-
 object AlnfTheme : BaseTheme {
 
     private val defaultStyles = object : DefaultStyles {
