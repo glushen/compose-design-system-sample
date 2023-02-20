@@ -1,7 +1,6 @@
 package online.arapov.dsystems.core.styles
 
-import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
@@ -22,7 +21,17 @@ data class ButtonStyle(
     val minWidth: Dp,
     val iconPadding: Dp,
     val iconSize: Dp,
-)
+) {
+    @Composable
+    fun backgroundColor(enabled: Boolean): State<Color> {
+        return rememberUpdatedState(if (enabled) backgroundColor else disabledBackgroundColor)
+    }
+
+    @Composable
+    fun contentColor(enabled: Boolean): State<Color> {
+        return rememberUpdatedState(if (enabled) contentColor else disabledContentColor)
+    }
+}
 
 val LocalButtonStyle = staticCompositionLocalOf<ButtonStyle> {
     throw IllegalStateException("default style not implemented")

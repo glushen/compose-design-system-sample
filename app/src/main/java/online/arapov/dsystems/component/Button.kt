@@ -20,12 +20,15 @@ fun Button(
     iconLeft: (@Composable () -> Unit)? = null,
     enabled: Boolean = true
 ) {
+
+    val backgroundColor = style.backgroundColor(enabled)
+    val contentColor = style.contentColor(enabled)
     Button(
         onClick = onClick,
         modifier = modifier,
         shape = style.shape,
         elevation = style.elevation,
-        backgroundColor = style.backgroundColor,
+        backgroundColor = backgroundColor.value,
         border = null,
         enabled = enabled,
         indication = rememberRipple()
@@ -45,7 +48,7 @@ fun Button(
         } else null
 
         CompositionLocalProvider(
-            LocalContentColor provides style.contentColor
+            LocalContentColor provides contentColor.value
         ) {
             Row(
                 modifier = Modifier
