@@ -1,4 +1,4 @@
-package online.arapov.dsystems.theme.v1
+package online.arapov.dsystems.theme.material
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color

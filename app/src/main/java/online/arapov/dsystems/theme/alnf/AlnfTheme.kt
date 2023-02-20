@@ -1,4 +1,4 @@
-package online.arapov.dsystems.theme.v2
+package online.arapov.dsystems.theme.alnf
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
@@ -29,17 +29,20 @@ fun AlnfTheme(
 
 object AlnfTheme : BaseTheme {
 
-    private val defaultStyles = object : DefaultStyles {
-        @Composable
-        override fun buttonStyle(): ButtonStyle = AlnfButtonStyles.default()
-    }
-
     val colors: AlnfColors
         @Composable
         @ReadOnlyComposable
         get() = LocalAlnfColor.current
 
-    val buttonStyles: AlnfButtonStyles = AlnfButtonStyles
+    val buttonStyles: ButtonAlnfStyles
+        @Composable
+        @ReadOnlyComposable
+        get() = DefaultButtonAlnfStyles
+
+    private val defaultStyles = object : DefaultStyles {
+        @Composable
+        override fun buttonStyle(): ButtonStyle = buttonStyles.default()
+    }
 
     @Composable
     @ReadOnlyComposable

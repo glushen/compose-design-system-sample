@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import online.arapov.dsystems.core.styles.ButtonStyle
 import online.arapov.dsystems.core.styles.LocalButtonStyle
-import online.arapov.dsystems.theme.v1.MaterialTheme
 
 interface DefaultStyles {
     @Composable

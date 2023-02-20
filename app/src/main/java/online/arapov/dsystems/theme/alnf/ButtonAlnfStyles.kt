@@ -1,4 +1,4 @@
-package online.arapov.dsystems.theme.v2
+package online.arapov.dsystems.theme.alnf
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -8,12 +8,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import online.arapov.dsystems.core.styles.ButtonStyle
-import online.arapov.dsystems.theme.v1.MaterialButtonStyles
-import online.arapov.dsystems.theme.v1.MaterialTheme
 
-object AlnfButtonStyles {
-
+interface ButtonAlnfStyles {
     val primary: ButtonStyle
+        @Composable
+        @ReadOnlyComposable
+        get
+    val secondary: ButtonStyle
+        @Composable
+        @ReadOnlyComposable
+        get
+
+    @Composable
+    fun default(): ButtonStyle = primary
+}
+
+internal object DefaultButtonAlnfStyles : ButtonAlnfStyles {
+
+    override val primary: ButtonStyle
         @Composable
         @ReadOnlyComposable
         get() = ButtonStyle(
@@ -36,7 +48,7 @@ object AlnfButtonStyles {
             iconSize = 22.dp,
         )
 
-    val secondary: ButtonStyle
+    override val secondary: ButtonStyle
         @Composable
         @ReadOnlyComposable
         get() = primary.copy(
@@ -46,8 +58,4 @@ object AlnfButtonStyles {
             disabledContentColor = AlnfTheme.colors.warmGray4,
             disabledBackgroundColor = AlnfTheme.colors.gray28,
         )
-
-
-            @Composable
-    fun default(): ButtonStyle = primary
 }

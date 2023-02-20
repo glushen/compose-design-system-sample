@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import online.arapov.dsystems.component.Button
 import online.arapov.dsystems.component.Icon
 import online.arapov.dsystems.component.Text
-import online.arapov.dsystems.theme.v1.MaterialTheme
-import online.arapov.dsystems.theme.v2.AlnfTheme
+import online.arapov.dsystems.theme.material.MaterialTheme
+import online.arapov.dsystems.theme.alnf.AlnfTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,8 @@ fun Screen() {
 
     if (isMaterial) {
         MaterialTheme(
-            isDark = isDark
+            isDark = isDark,
+            isCompatModeEnabled = isCompat
         ) {
             Content(
                 isDark = isDark,
@@ -64,7 +65,6 @@ fun Screen() {
             )
         }
     }
-
 }
 
 @Composable
@@ -95,10 +95,12 @@ fun Content(
                 title = if (isDark) "Dark Theme" else "Light Theme",
                 onClick = darkModeChange
             )
-            Button(
-                title = if (isCompat) "Compat Enabled" else "Compat Disabled",
-                onClick = compatModeChange
-            )
+            if (isMaterial) {
+                Button(
+                    title = if (isCompat) "Compat Enabled" else "Compat Disabled",
+                    onClick = compatModeChange
+                )
+            }
         }
         Text(text = stringResource(id = R.string.lorem_ipsum))
         Text(
@@ -164,6 +166,16 @@ fun Content(
             )
         }
     }
+}
+
+@Preview(
+    name = "Screen",
+    showBackground = true,
+    device = Devices.PIXEL_4
+)
+@Composable
+fun ScreenPreview() {
+    Screen()
 }
 
 @Preview(
