@@ -6,7 +6,8 @@ import online.arapov.dsystems.core.styles.ButtonStyle
 import online.arapov.dsystems.core.styles.LocalButtonStyle
 
 interface DefaultStyles {
-    val buttonStyle: ButtonStyle
+    @Composable
+    fun buttonStyle(): ButtonStyle
 }
 
 @Composable
@@ -15,7 +16,7 @@ fun DefaultStylesTheme(
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
-        LocalButtonStyle provides defaultStyles.buttonStyle,
+        LocalButtonStyle provides defaultStyles.buttonStyle(),
         content = content
     )
 }

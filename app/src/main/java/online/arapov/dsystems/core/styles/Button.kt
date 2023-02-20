@@ -12,7 +12,11 @@ import androidx.compose.ui.unit.Dp
 data class ButtonStyle(
     val textStyle: TextStyle,
     val border: BorderStroke?,
+    val contentColor: Color,
     val backgroundColor: Color,
+    val pressedColor: Color,
+    val disabledBackgroundColor: Color,
+    val disabledContentColor: Color,
     val elevation: Dp,
     val shape: Shape,
     val horizontalPadding: Dp,
