@@ -12,12 +12,13 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.toolingGraphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import online.arapov.dsystems.core.LocalContentColor
 
 @Composable
 fun Icon(
     painter: Painter,
     modifier: Modifier = Modifier,
-    tint: Color = Color.Unspecified
+    tint: Color = LocalContentColor.current
 ) {
     val colorFilter = if (tint == Color.Unspecified) null else ColorFilter.tint(tint)
     Box(

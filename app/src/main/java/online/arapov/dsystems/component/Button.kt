@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import online.arapov.dsystems.core.LocalContentColor
 import online.arapov.dsystems.core.component.Button
 import online.arapov.dsystems.core.styles.ButtonStyle
 import online.arapov.dsystems.core.styles.LocalButtonStyle
@@ -33,24 +35,25 @@ fun Button(
         enabled = enabled,
         indication = rememberRipple()
     ) {
-        Row(
-            modifier = Modifier
-                .defaultMinSize(
-                    minWidth = style.minWidth,
-                    minHeight = style.minHeight
-                )
-                .padding(horizontal = style.horizontalPadding),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+        CompositionLocalProvider(
+            LocalContentColor provides style.contentColor
         ) {
-            contentLeft?.invoke()
+            Row(
+                modifier = Modifier
+                    .defaultMinSize(
+                        minWidth = style.minWidth,
+                        minHeight = style.minHeight
+                    )
+                    .padding(horizontal = style.horizontalPadding),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                contentLeft?.invoke()
 
-            BasicText(
-                text = title,
-                style = style.textStyle
-            )
+                Text(text = title)
 
-            contentRight?.invoke()
+                contentRight?.invoke()
+            }
         }
     }
 }
