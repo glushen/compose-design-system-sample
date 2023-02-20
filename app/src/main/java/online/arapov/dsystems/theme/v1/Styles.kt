@@ -1,4 +1,4 @@
-package online.arapov.dsystems.theme.v2
+package online.arapov.dsystems.theme.v1
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -9,27 +9,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import online.arapov.dsystems.core.styles.ButtonStyle
 
-object AlnfButtonStyles {
+object MaterialButtonStyles {
 
     val primary: ButtonStyle
         @Composable
         @ReadOnlyComposable
         get() = ButtonStyle(
             textStyle = TextStyle(
-                fontSize = 16.sp,
-                lineHeight = 22.sp,
-                fontWeight = FontWeight.W400,
+                fontSize = 12.sp,
+                lineHeight = 18.sp,
+                fontWeight = FontWeight.W700,
             ),
-            backgroundColor = AlnfTheme.colors.blue,
-            contentColor = AlnfTheme.colors.constantWhite,
-            pressedColor = AlnfTheme.colors.blue600,
-            disabledBackgroundColor = AlnfTheme.colors.warmGray4,
-            disabledContentColor = AlnfTheme.colors.gray28,
+            backgroundColor = MaterialTheme.colors.blue,
+            contentColor = MaterialTheme.colors.white,
+            pressedColor = MaterialTheme.colors.white.copy(alpha = 0.24f),
+            disabledContentColor = MaterialTheme.colors.gray28,
+            disabledBackgroundColor = MaterialTheme.colors.blue.copy(alpha = 0f),
+            minHeight = 36.dp,
+            minWidth = 64.dp,
+            horizontalPadding = 16.dp,
             elevation = 0.dp,
             shape = RoundedCornerShape(3.dp),
-            horizontalPadding = 16.dp,
-            minHeight = 44.dp,
-            minWidth = 44.dp
         )
 
 

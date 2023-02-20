@@ -29,7 +29,7 @@ fun Button(
         shape = style.shape,
         elevation = style.elevation,
         backgroundColor = style.backgroundColor,
-        border = style.border,
+        border = null,
         enabled = enabled,
         indication = rememberRipple()
     ) {
