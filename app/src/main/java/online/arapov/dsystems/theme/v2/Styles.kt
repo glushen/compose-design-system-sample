@@ -29,7 +29,9 @@ object AlnfButtonStyles {
             shape = RoundedCornerShape(3.dp),
             horizontalPadding = 16.dp,
             minHeight = 44.dp,
-            minWidth = 44.dp
+            minWidth = 44.dp,
+            iconPadding = 6.dp,
+            iconSize = 22.dp,
         )
 
 

@@ -30,6 +30,8 @@ object MaterialButtonStyles {
             horizontalPadding = 16.dp,
             elevation = 0.dp,
             shape = RoundedCornerShape(3.dp),
+            iconPadding = 6.dp,
+            iconSize = 22.dp,
         )
 
 

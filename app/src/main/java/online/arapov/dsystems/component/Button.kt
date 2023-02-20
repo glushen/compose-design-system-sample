@@ -1,10 +1,6 @@
 package online.arapov.dsystems.component
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -21,8 +17,7 @@ fun Button(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     style: ButtonStyle = LocalButtonStyle.current,
-    contentLeft: (@Composable () -> Unit)? = null,
-    contentRight: (@Composable () -> Unit)? = null,
+    iconLeft: (@Composable () -> Unit)? = null,
     enabled: Boolean = true
 ) {
     Button(
@@ -35,6 +30,20 @@ fun Button(
         enabled = enabled,
         indication = rememberRipple()
     ) {
+
+        val icon: (@Composable () -> Unit)? = if (iconLeft != null) {
+            {
+                Box(
+                    modifier = Modifier
+                        .padding(style.iconPadding)
+                        .size(style.iconSize),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    iconLeft()
+                }
+            }
+        } else null
+
         CompositionLocalProvider(
             LocalContentColor provides style.contentColor
         ) {
@@ -48,11 +57,10 @@ fun Button(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                contentLeft?.invoke()
+                icon?.invoke()
 
                 Text(text = title)
 
-                contentRight?.invoke()
             }
         }
     }

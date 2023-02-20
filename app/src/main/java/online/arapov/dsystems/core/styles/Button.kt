@@ -20,6 +20,8 @@ data class ButtonStyle(
     val horizontalPadding: Dp,
     val minHeight: Dp,
     val minWidth: Dp,
+    val iconPadding: Dp,
+    val iconSize: Dp,
 )
 
 val LocalButtonStyle = staticCompositionLocalOf<ButtonStyle> {
