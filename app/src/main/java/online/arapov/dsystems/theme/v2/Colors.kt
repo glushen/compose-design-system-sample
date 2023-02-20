@@ -4,6 +4,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 data class AlnfColors(
+    val background: Color,
+    val content: Color,
     val constantWhite: Color,
     val constantBlack: Color,
     val blue: Color,
@@ -16,6 +18,8 @@ data class AlnfColors(
 )
 
 internal fun lightColors() = AlnfColors(
+    background = Color(0xFFFFFFFF),
+    content = Color(0xFF000000),
     constantWhite = Color(0xFFFFFFFF),
     constantBlack = Color(0xFF000000),
     blue = Color(0xFF00AAFF),
@@ -28,6 +32,8 @@ internal fun lightColors() = AlnfColors(
 )
 
 internal fun darkColors() = AlnfColors(
+    background = Color(0xFF121212),
+    content = Color(0xFFFFFFFF),
     constantWhite = Color(0xFFFFFFFF),
     constantBlack = Color(0xFF000000),
     blue = Color(0xFF00AAFF),

@@ -11,7 +11,6 @@ import online.arapov.dsystems.core.styles.ButtonStyle
 
 @Composable
 fun AlnfTheme(
-    defaultStyles: DefaultStyles = AlnfTheme.defaultStyles(),
     isDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -20,7 +19,9 @@ fun AlnfTheme(
         LocalAlnfColor provides colors
     ) {
         DefaultStylesTheme(
-            defaultStyles = defaultStyles,
+            defaultStyles = AlnfTheme.defaultStyles(),
+            backgroundColor = AlnfTheme.colors.background,
+            contentColor = AlnfTheme.colors.content,
             content = content
         )
     }

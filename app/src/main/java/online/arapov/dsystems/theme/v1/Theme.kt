@@ -1,12 +1,16 @@
 package online.arapov.dsystems.theme.v1
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.ui.Modifier
 import online.arapov.dsystems.core.BaseTheme
 import online.arapov.dsystems.core.DefaultStyles
 import online.arapov.dsystems.core.DefaultStylesTheme
+import online.arapov.dsystems.core.LocalContentColor
 import online.arapov.dsystems.core.styles.ButtonStyle
 
 @Composable
@@ -20,6 +24,8 @@ fun MaterialTheme(
     ) {
         DefaultStylesTheme(
             defaultStyles = MaterialTheme.defaultStyles(),
+            backgroundColor = MaterialTheme.colors.white,
+            contentColor = MaterialTheme.colors.black,
             content = content
         )
     }
