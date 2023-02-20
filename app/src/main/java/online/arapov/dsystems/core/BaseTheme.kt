@@ -3,4 +3,6 @@ package online.arapov.dsystems.core
 import androidx.compose.runtime.Immutable
 
 @Immutable
-interface BaseTheme
+interface BaseTheme {
+    fun defaultStyle(): DefaultStyles
+}
