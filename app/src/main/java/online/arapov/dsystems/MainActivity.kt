@@ -1,5 +1,6 @@
 package online.arapov.dsystems
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -183,10 +184,19 @@ fun ScreenPreview() {
     showBackground = true,
     device = Devices.PIXEL_4
 )
+
+@Preview(
+    name = "Material Night",
+    showBackground = true,
+    device = Devices.PIXEL_4,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
 @Composable
 fun MaterialPreview() {
     MaterialTheme {
-        Content()
+        Content(
+            isMaterial = true
+        )
     }
 }
 
@@ -195,9 +205,17 @@ fun MaterialPreview() {
     showBackground = true,
     device = Devices.PIXEL_4
 )
+@Preview(
+    name = "Alnf",
+    showBackground = true,
+    device = Devices.PIXEL_4,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
 @Composable
 fun AlnfPreview() {
     AlnfTheme {
-        Content()
+        Content(
+            isMaterial = false
+        )
     }
 }
