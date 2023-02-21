@@ -1,4 +1,4 @@
-package online.arapov.dsystems.component
+package online.arapov.dsystems.core.component
 
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable

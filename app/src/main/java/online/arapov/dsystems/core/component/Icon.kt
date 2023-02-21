@@ -1,4 +1,4 @@
-package online.arapov.dsystems.component
+package online.arapov.dsystems.core.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size

@@ -18,8 +18,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import online.arapov.dsystems.component.Button
-import online.arapov.dsystems.component.Icon
-import online.arapov.dsystems.component.Text
+import online.arapov.dsystems.core.component.Icon
+import online.arapov.dsystems.core.component.Text
 import online.arapov.dsystems.theme.material.MaterialTheme
 import online.arapov.dsystems.theme.alnf.AlnfTheme
 

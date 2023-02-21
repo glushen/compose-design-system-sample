@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import online.arapov.dsystems.core.LocalContentColor
 import online.arapov.dsystems.core.component.Button
+import online.arapov.dsystems.core.component.Text
 import online.arapov.dsystems.core.styles.ButtonStyle
 import online.arapov.dsystems.core.styles.LocalButtonStyle
 
