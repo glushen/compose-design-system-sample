@@ -3,6 +3,7 @@ package online.arapov.dsystems.theme.alnf
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -22,6 +23,8 @@ interface ButtonAlnfStyles {
     @Composable
     fun default(): ButtonStyle = primary
 }
+
+internal val LocalButtonAlnfStyles = staticCompositionLocalOf<ButtonAlnfStyles> { DefaultButtonAlnfStyles }
 
 internal object DefaultButtonAlnfStyles : ButtonAlnfStyles {
 

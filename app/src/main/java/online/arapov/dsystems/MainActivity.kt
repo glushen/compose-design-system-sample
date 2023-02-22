@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import online.arapov.dsystems.component.Button
 import online.arapov.dsystems.core.component.Icon
+import online.arapov.dsystems.core.component.PromoBlock
 import online.arapov.dsystems.core.component.Text
 import online.arapov.dsystems.theme.material.MaterialTheme
 import online.arapov.dsystems.theme.alnf.AlnfTheme
@@ -111,63 +112,86 @@ fun Content(
                 fontWeight = FontWeight.Bold
             )
         )
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        Buttons(image, isMaterial)
+        PromoBlock(
+            modifier = Modifier
+                .fillMaxWidth()
         ) {
-            Button(
-                title = "Default Primary",
-                onClick = {}
-            )
-            Button(
-                title = "Icon",
-                onClick = {},
-                iconLeft = {
-                    val painter = rememberVectorPainter(image = image)
-                    Icon(
-                        painter = painter
-                    )
-                }
-            )
-            Button(
-                title = "Disabled",
-                onClick = {},
-                enabled = false
-            )
-        }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            val buttonStyle = if (isMaterial)
-                MaterialTheme.buttonStyles.secondary
-            else
-                AlnfTheme.buttonStyles.secondary
-            Button(
-                title = "Secondary",
-                style = buttonStyle,
-                onClick = {}
-            )
-            Button(
-                title = "Icon",
-                onClick = {},
-                style = buttonStyle,
-                iconLeft = {
-                    val painter = rememberVectorPainter(image = image)
-                    Icon(
-                        painter = painter
-                    )
-                }
-            )
-            Button(
-                title = "Disabled",
-                onClick = {},
-                style = buttonStyle,
-                enabled = false
-            )
+            Column(
+                modifier = Modifier.padding(
+                    top = 16.dp,
+                    bottom = 16.dp
+                ),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Buttons(image, isMaterial)
+            }
         }
     }
 }
+
+@Composable
+private fun Buttons(
+    image: ImageVector,
+    isMaterial: Boolean
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Button(
+            title = "Default Primary",
+            onClick = {}
+        )
+        Button(
+            title = "Icon",
+            onClick = {},
+            iconLeft = {
+                val painter = rememberVectorPainter(image = image)
+                Icon(
+                    painter = painter
+                )
+            }
+        )
+        Button(
+            title = "Disabled",
+            onClick = {},
+            enabled = false
+        )
+    }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        val buttonStyle = if (isMaterial)
+            MaterialTheme.buttonStyles.secondary
+        else
+            AlnfTheme.buttonStyles.secondary
+        Button(
+            title = "Secondary",
+            style = buttonStyle,
+            onClick = {}
+        )
+        Button(
+            title = "Icon",
+            onClick = {},
+            style = buttonStyle,
+            iconLeft = {
+                val painter = rememberVectorPainter(image = image)
+                Icon(
+                    painter = painter
+                )
+            }
+        )
+        Button(
+            title = "Disabled",
+            onClick = {},
+            style = buttonStyle,
+            enabled = false
+        )
+    }
+}
+
 
 @Preview(
     name = "Screen",

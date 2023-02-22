@@ -6,6 +6,7 @@ import online.arapov.dsystems.core.BaseTheme
 import online.arapov.dsystems.core.DefaultStyles
 import online.arapov.dsystems.core.DefaultStylesTheme
 import online.arapov.dsystems.core.styles.ButtonStyle
+import online.arapov.dsystems.core.styles.PromoBlockStyle
 import online.arapov.dsystems.theme.material.compat.AlnfButtonMaterialCompat
 import online.arapov.dsystems.theme.alnf.AlnfTheme
 
@@ -19,7 +20,7 @@ fun MaterialTheme(
         LocalMaterialColor provides colors
     ) {
         DefaultStylesTheme(
-            defaultStyles = MaterialTheme.defaultStyles(),
+            theme = MaterialTheme,
             backgroundColor = MaterialTheme.colors.white,
             contentColor = MaterialTheme.colors.black,
             content = content
@@ -33,15 +34,18 @@ fun MaterialTheme(
     isCompatModeEnabled: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    MaterialTheme.isCompatModeEnabled = isCompatModeEnabled
     if (isCompatModeEnabled) {
-        MaterialTheme(
-            isDark = isDark
+        CompositionLocalProvider(
+            LocalButtonMaterialStyles provides AlnfButtonMaterialCompat
         ) {
-            AlnfTheme(
-                isDark = isDark,
-                content = content
-            )
+            MaterialTheme(
+                isDark = isDark
+            ) {
+                AlnfTheme(
+                    isDark = isDark,
+                    content = content
+                )
+            }
         }
     } else {
         MaterialTheme(
@@ -53,8 +57,6 @@ fun MaterialTheme(
 
 object MaterialTheme : BaseTheme {
 
-    internal var isCompatModeEnabled by mutableStateOf(false)
-
     val colors: MaterialColors
         @Composable
         @ReadOnlyComposable
@@ -63,16 +65,28 @@ object MaterialTheme : BaseTheme {
     val buttonStyles: ButtonMaterialStyles
         @Composable
         @ReadOnlyComposable
-        get() = if (isCompatModeEnabled) AlnfButtonMaterialCompat else DefaultButtonMaterialStyles
+        get() = LocalButtonMaterialStyles.current
 
-    private val defaultStyles = object : DefaultStyles {
+    val promoBlockStyles: PromoBlockMaterialStyles
         @Composable
-        override fun buttonStyle(): ButtonStyle = buttonStyles.default()
-    }
+        @ReadOnlyComposable
+        get() = LocalPromoBlockMaterialStyles.current
 
     @Composable
     @ReadOnlyComposable
     override fun defaultStyles(): DefaultStyles {
-        return defaultStyles
+        return DefaultStylesMaterial
+    }
+}
+
+internal object DefaultStylesMaterial : DefaultStyles {
+    @Composable
+    override fun buttonStyle(): ButtonStyle {
+        return MaterialTheme.buttonStyles.default()
+    }
+
+    @Composable
+    override fun promoBlockStyle(): PromoBlockStyle {
+        return MaterialTheme.promoBlockStyles.default()
     }
 }
