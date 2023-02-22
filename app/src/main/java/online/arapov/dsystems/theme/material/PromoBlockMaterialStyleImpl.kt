@@ -35,8 +35,8 @@ private data class PromoBlockTheme(
 
     @Composable
     @ReadOnlyComposable
-    override fun localProviders(): List<ProvidedValue<*>> {
-        return listOf(
+    override fun localProviders(): Array<ProvidedValue<*>> {
+        return arrayOf(
             LocalButtonMaterialStyles provides promoBlockButtonStyles
         )
     }

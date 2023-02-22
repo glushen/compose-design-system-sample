@@ -14,5 +14,5 @@ interface BaseTheme {
 
     @Composable
     @ReadOnlyComposable
-    fun localProviders(): List<ProvidedValue<*>> = emptyList()
+    fun localProviders(): Array<ProvidedValue<*>> = emptyArray()
 }

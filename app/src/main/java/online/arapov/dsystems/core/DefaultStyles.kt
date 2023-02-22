@@ -39,7 +39,7 @@ fun DefaultStylesTheme(
         LocalPromoBlockStyle provides defaultStyles.promoBlockStyle(),
         LocalContentColor provides contentColor
     ) {
-        CompositionLocalProvider(*theme.localProviders().toTypedArray()) {
+        CompositionLocalProvider(*theme.localProviders()) {
             if (backgroundColor.isSpecified) {
                 Box(Modifier.background(backgroundColor)) {
                     content()
