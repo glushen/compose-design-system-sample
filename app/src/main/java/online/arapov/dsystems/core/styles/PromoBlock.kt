@@ -14,7 +14,3 @@ interface PromoBlockStyle {
     val shape: Shape
     fun theme(): BaseTheme
 }
-
-val LocalPromoBlockStyle = compositionLocalOf<PromoBlockStyle> {
-    throw IllegalStateException("default style not implemented")
-}

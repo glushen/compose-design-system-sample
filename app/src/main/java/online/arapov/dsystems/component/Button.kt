@@ -10,14 +10,13 @@ import online.arapov.dsystems.core.LocalContentColor
 import online.arapov.dsystems.core.component.Button
 import online.arapov.dsystems.core.component.Text
 import online.arapov.dsystems.core.styles.ButtonStyle
-import online.arapov.dsystems.core.styles.LocalButtonStyle
 
 @Composable
 fun Button(
     title: String,
+    style: ButtonStyle,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: ButtonStyle = LocalButtonStyle.current,
     iconLeft: (@Composable () -> Unit)? = null,
     enabled: Boolean = true
 ) {
@@ -63,7 +62,10 @@ fun Button(
             ) {
                 icon?.invoke()
 
-                Text(text = title)
+                Text(
+                    text = title,
+                    style = style.textStyle
+                )
 
             }
         }

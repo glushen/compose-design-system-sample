@@ -1,14 +1,13 @@
 package online.arapov.dsystems.theme.material
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import online.arapov.dsystems.core.BaseTheme
-import online.arapov.dsystems.core.DefaultStyles
 import online.arapov.dsystems.core.DefaultStylesTheme
-import online.arapov.dsystems.core.styles.ButtonStyle
-import online.arapov.dsystems.core.styles.PromoBlockStyle
-import online.arapov.dsystems.theme.material.compat.AlnfButtonMaterialCompat
 import online.arapov.dsystems.theme.alnf.AlnfTheme
+import online.arapov.dsystems.theme.material.compat.AlnfButtonMaterialCompat
 
 @Composable
 fun MaterialTheme(
@@ -71,22 +70,4 @@ object MaterialTheme : BaseTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalPromoBlockMaterialStyles.current
-
-    @Composable
-    @ReadOnlyComposable
-    override fun defaultStyles(): DefaultStyles {
-        return DefaultStylesMaterial
-    }
-}
-
-internal object DefaultStylesMaterial : DefaultStyles {
-    @Composable
-    override fun buttonStyle(): ButtonStyle {
-        return MaterialTheme.buttonStyles.default()
-    }
-
-    @Composable
-    override fun promoBlockStyle(): PromoBlockStyle {
-        return MaterialTheme.promoBlockStyles.default()
-    }
 }

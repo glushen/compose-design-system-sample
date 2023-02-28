@@ -32,7 +32,3 @@ data class ButtonStyle(
         return rememberUpdatedState(if (enabled) contentColor else disabledContentColor)
     }
 }
-
-val LocalButtonStyle = staticCompositionLocalOf<ButtonStyle> {
-    throw IllegalStateException("default style not implemented")
-}

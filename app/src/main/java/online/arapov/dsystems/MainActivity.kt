@@ -89,22 +89,32 @@ fun Content(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            val buttonStyle = if (isMaterial)
+                MaterialTheme.buttonStyles.primary
+            else
+                AlnfTheme.buttonStyles.primary
             Button(
                 title = if (isMaterial) "Material Theme" else "Alnf Theme",
-                onClick = themeChange
+                onClick = themeChange,
+                style = buttonStyle
             )
             Button(
                 title = if (isDark) "Dark Theme" else "Light Theme",
-                onClick = darkModeChange
+                onClick = darkModeChange,
+                style = buttonStyle
             )
             if (isMaterial) {
                 Button(
                     title = if (isCompat) "Compat Enabled" else "Compat Disabled",
-                    onClick = compatModeChange
+                    onClick = compatModeChange,
+                    style = buttonStyle
                 )
             }
         }
-        Text(text = stringResource(id = R.string.lorem_ipsum))
+        Text(
+            text = stringResource(id = R.string.lorem_ipsum),
+            style = TextStyle.Default
+        )
         Text(
             text = "Buttons:",
             modifier = Modifier.padding(top = 8.dp),
@@ -113,9 +123,15 @@ fun Content(
             )
         )
         Buttons(image, isMaterial)
+        val promoBlockStyle = if (isMaterial)
+            MaterialTheme.promoBlockStyles.blue
+        else
+            AlnfTheme.promoBlockStyles.blue
+
         PromoBlock(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            style = promoBlockStyle
         ) {
             Column(
                 modifier = Modifier.padding(
@@ -139,9 +155,14 @@ private fun Buttons(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        val buttonStyle = if (isMaterial)
+            MaterialTheme.buttonStyles.primary
+        else
+            AlnfTheme.buttonStyles.primary
         Button(
-            title = "Default Primary",
-            onClick = {}
+            title = "Primary",
+            onClick = {},
+            style = buttonStyle
         )
         Button(
             title = "Icon",
@@ -151,12 +172,14 @@ private fun Buttons(
                 Icon(
                     painter = painter
                 )
-            }
+            },
+            style = buttonStyle
         )
         Button(
             title = "Disabled",
             onClick = {},
-            enabled = false
+            enabled = false,
+            style = buttonStyle
         )
     }
     Row(

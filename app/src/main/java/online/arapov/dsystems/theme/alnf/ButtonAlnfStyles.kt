@@ -19,12 +19,10 @@ interface ButtonAlnfStyles {
         @Composable
         @ReadOnlyComposable
         get
-
-    @Composable
-    fun default(): ButtonStyle = primary
 }
 
-internal val LocalButtonAlnfStyles = staticCompositionLocalOf<ButtonAlnfStyles> { DefaultButtonAlnfStyles }
+internal val LocalButtonAlnfStyles =
+    staticCompositionLocalOf<ButtonAlnfStyles> { DefaultButtonAlnfStyles }
 
 internal object DefaultButtonAlnfStyles : ButtonAlnfStyles {
 

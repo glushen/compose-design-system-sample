@@ -20,9 +20,6 @@ interface ButtonMaterialStyles {
         @Composable
         @ReadOnlyComposable
         get
-
-    @Composable
-    fun default(): ButtonStyle = primary
 }
 
 internal val LocalButtonMaterialStyles =

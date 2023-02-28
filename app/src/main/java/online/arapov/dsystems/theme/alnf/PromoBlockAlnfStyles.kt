@@ -13,9 +13,6 @@ interface PromoBlockAlnfStyles {
         @Composable
         @ReadOnlyComposable
         get
-
-    @Composable
-    fun default(): PromoBlockStyle = blue
 }
 
 internal val LocalPromoBlockAlnfStyles =

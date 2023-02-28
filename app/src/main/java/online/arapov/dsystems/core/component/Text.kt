@@ -11,9 +11,9 @@ import online.arapov.dsystems.core.LocalContentColor
 @Composable
 fun Text(
     text: String,
+    style: TextStyle,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
-    style: TextStyle = TextStyle.Default
 ) {
     val textColor = color.takeOrElse {
         style.color.takeOrElse {

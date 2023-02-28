@@ -8,13 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import online.arapov.dsystems.core.DefaultStylesTheme
-import online.arapov.dsystems.core.styles.LocalPromoBlockStyle
 import online.arapov.dsystems.core.styles.PromoBlockStyle
 
 @Composable
 fun PromoBlock(
+    style: PromoBlockStyle,
     modifier: Modifier = Modifier,
-    style: PromoBlockStyle = LocalPromoBlockStyle.current,
     content: @Composable BoxScope.() -> Unit
 ) {
     DefaultStylesTheme(theme = style.theme()) {

@@ -6,7 +6,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import online.arapov.dsystems.core.BaseTheme
-import online.arapov.dsystems.core.DefaultStyles
 import online.arapov.dsystems.core.styles.ButtonStyle
 import online.arapov.dsystems.core.styles.PromoBlockStyle
 
@@ -24,13 +23,6 @@ internal data class PromoBlockStyleImpl(
 private data class PromoBlockTheme(
     val style: PromoBlockStyleImpl
 ) : BaseTheme {
-    private val defaultPromoBlockStyles = DefaultPromoBlockStyles(style)
-
-    @Composable
-    @ReadOnlyComposable
-    override fun defaultStyles(): DefaultStyles {
-        return defaultPromoBlockStyles
-    }
 
     private val promoBlockButtonStyles = PromoBlockButtonStyles(style)
 
@@ -40,16 +32,6 @@ private data class PromoBlockTheme(
         return arrayOf(
             LocalButtonAlnfStyles provides promoBlockButtonStyles
         )
-    }
-}
-
-private data class DefaultPromoBlockStyles(
-    val style: PromoBlockStyleImpl
-) : DefaultStyles by DefaultStylesAlnf {
-    @Composable
-    @ReadOnlyComposable
-    override fun buttonStyle(): ButtonStyle {
-        return style.primaryButtonStyle
     }
 }
 
