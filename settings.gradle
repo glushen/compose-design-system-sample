@@ -14,3 +14,11 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Design Systems"
 include ':app'
+
+include ':ds:core'
+
+include ':ds:component:button'
+include ':ds:component:promo_block'
+
+include ':ds:theme:alnf'
+include ':ds:theme:material'
