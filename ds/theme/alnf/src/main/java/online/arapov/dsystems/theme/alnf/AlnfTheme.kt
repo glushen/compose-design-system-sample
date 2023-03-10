@@ -1,6 +1,8 @@
 package online.arapov.dsystems.theme.alnf
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import online.arapov.dsystems.core.DefaultTheme
@@ -15,8 +17,10 @@ fun AlnfTheme(
     content: @Composable () -> Unit
 ) {
     val colors = if (isDark) darkColors() else lightColors()
+    val rippleIndication = rememberRipple()
     CompositionLocalProvider(
-        LocalAlnfColor provides colors
+        LocalAlnfColor provides colors,
+        LocalIndication provides rippleIndication
     ) {
         DefaultTheme(
             theme = AlnfTheme,
