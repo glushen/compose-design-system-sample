@@ -11,10 +11,7 @@ import online.arapov.dsystems.theme.alnf.gen.style.PromoBlockAlnfStyles
 
 object AlnfTheme : BaseTheme {
 
-    val colors: AlnfColors
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalAlnfColor.current
+    val colors: AlnfColors = AlnfColors()
 
     val buttonStyles: ButtonAlnfStyles
         @Composable

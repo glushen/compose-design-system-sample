@@ -10,10 +10,7 @@ import online.arapov.dsystems.theme.material.gen.style.PromoBlockMaterialStyles
 
 object MaterialTheme : online.arapov.dsystems.core.BaseTheme {
 
-    val colors: MaterialColors
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalMaterialColor.current
+    val colors: MaterialColors = MaterialColors()
 
     val buttonStyles: ButtonMaterialStyles
         @Composable

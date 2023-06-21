@@ -18,7 +18,7 @@ fun PromoBlock(
     DefaultTheme(theme = style.theme()) {
         Box(
             modifier = modifier
-                .background(style.backgroundColor, style.shape)
+                .background(style.backgroundColor(), style.shape)
                 .padding(8.dp),
             content = content
         )

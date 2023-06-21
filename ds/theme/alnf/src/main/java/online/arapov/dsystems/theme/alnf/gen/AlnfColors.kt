@@ -1,48 +1,18 @@
 package online.arapov.dsystems.theme.alnf.gen
 
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import online.arapov.dsystems.core.ThemeColor
 
 data class AlnfColors(
-    val background: Color,
-    val content: Color,
-    val constantWhite: Color,
-    val constantBlack: Color,
-    val blue: Color,
-    val blue100: Color,
-    val blue700: Color,
-    val blue600: Color,
-    val warmGray4: Color,
-    val gray28: Color,
-    val green50: Color,
+    val background: ThemeColor = ThemeColor(Color(0xFFFFFFFF), Color(0xFF121212)),
+    val content: ThemeColor = ThemeColor(Color(0xFF000000), Color(0xFFFFFFFF)),
+    val constantWhite: ThemeColor = ThemeColor(Color(0xFFFFFFFF), Color(0xFFFFFFFF)),
+    val constantBlack: ThemeColor = ThemeColor(Color(0xFF000000), Color(0xFF000000)),
+    val blue: ThemeColor = ThemeColor(Color(0xFF00AAFF), Color(0xFF00AAFF)),
+    val blue100: ThemeColor = ThemeColor(Color(0xFFCCECFF), Color(0xFF002D57)),
+    val blue700: ThemeColor = ThemeColor(Color(0xFF008AED), Color(0xFF00AAFF)),
+    val blue600: ThemeColor = ThemeColor(Color(0xFF0099F7), Color(0xFF0099F7)),
+    val warmGray4: ThemeColor = ThemeColor(Color(0xFFF2F1F0), Color(0xFFF2F1F0)),
+    val gray28: ThemeColor = ThemeColor(Color(0xFFB8B8B8), Color(0xFFB8B8B8)),
+    val green50: ThemeColor = ThemeColor(Color(0xFFEAFCCF), Color(0xFFEAFCCF)),
 )
-
-internal fun lightColors() = AlnfColors(
-    background = Color(0xFFFFFFFF),
-    content = Color(0xFF000000),
-    constantWhite = Color(0xFFFFFFFF),
-    constantBlack = Color(0xFF000000),
-    blue = Color(0xFF00AAFF),
-    blue100 = Color(0xFFCCECFF),
-    blue700 = Color(0xFF008AED),
-    blue600 = Color(0xFF0099F7),
-    warmGray4 = Color(0xFFF2F1F0),
-    gray28 = Color(0xFFB8B8B8),
-    green50 = Color(0xFFEAFCCF),
-)
-
-internal fun darkColors() = AlnfColors(
-    background = Color(0xFF121212),
-    content = Color(0xFFFFFFFF),
-    constantWhite = Color(0xFFFFFFFF),
-    constantBlack = Color(0xFF000000),
-    blue = Color(0xFF00AAFF),
-    blue100 = Color(0xFF002D57),
-    blue700 = Color(0xFF00AAFF),
-    blue600 = Color(0xFF0099F7),
-    warmGray4 = Color(0xFFF2F1F0),
-    gray28 = Color(0xFFB8B8B8),
-    green50 = Color(0xFFEAFCCF),
-)
-
-internal val LocalAlnfColor = staticCompositionLocalOf { lightColors() }

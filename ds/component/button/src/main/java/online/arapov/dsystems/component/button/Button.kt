@@ -1,6 +1,11 @@
 package online.arapov.dsystems.component.button
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -26,7 +31,7 @@ fun Button(
         modifier = modifier,
         shape = style.shape,
         elevation = style.elevation,
-        color = backgroundColor.value,
+        color = backgroundColor.value(),
         border = null,
         enabled = enabled
     ) {
@@ -45,7 +50,7 @@ fun Button(
         } else null
 
         CompositionLocalProvider(
-            LocalContentColor provides contentColor.value
+            LocalContentColor provides contentColor.value()
         ) {
             Row(
                 modifier = Modifier
