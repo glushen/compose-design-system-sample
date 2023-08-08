@@ -17,8 +17,13 @@ include ':app'
 
 include ':ds:core'
 
-include ':ds:component:button'
-include ':ds:component:promo_block'
+include ':ds:component:button:public'
+include ':ds:component:button:impl'
+include ':ds:component:promo_block:public'
+include ':ds:component:promo_block:impl'
 
 include ':ds:theme:alnf'
 include ':ds:theme:material'
+
+
+include ':di-core'
