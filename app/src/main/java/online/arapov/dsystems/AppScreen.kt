@@ -147,7 +147,25 @@ class AppScreenImpl @Inject constructor(
             else
                 AlnfTheme.promoBlockStyles.blue
 
-            promoBlock(
+            // Class Cast Exception
+//            promoBlock(
+//                modifier = Modifier
+//                    .fillMaxWidth(),
+//                style = promoBlockStyle
+//            ) {
+//                Column(
+//                    modifier = Modifier.padding(
+//                        top = 16.dp,
+//                        bottom = 16.dp
+//                    ),
+//                    verticalArrangement = Arrangement.spacedBy(8.dp)
+//                ) {
+//                    Buttons(image, isMaterial)
+//                }
+//            }
+
+            // Ok!
+            promoBlock.Block(
                 modifier = Modifier
                     .fillMaxWidth(),
                 style = promoBlockStyle

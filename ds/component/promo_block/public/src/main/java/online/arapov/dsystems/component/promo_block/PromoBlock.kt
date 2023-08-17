@@ -9,6 +9,15 @@ interface PromoBlock {
     @Composable
     operator fun invoke(
         style: PromoBlockStyle,
+        modifier: Modifier = Modifier,
+        content: @Composable BoxScope.() -> Unit
+    ) = Block(
+        style, modifier, content
+    )
+
+    @Composable
+    fun Block(
+        style: PromoBlockStyle,
         modifier: Modifier,
         content: @Composable BoxScope.() -> Unit
     )
