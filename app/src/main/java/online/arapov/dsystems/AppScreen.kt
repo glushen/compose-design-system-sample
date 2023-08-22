@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.squareup.anvil.annotations.ContributesBinding
 import online.arapov.dsystems.component.button.Button
 import online.arapov.dsystems.component.promo_block.PromoBlock
+import online.arapov.dsystems.component.promo_block.PromoBlockDelegate
 import online.arapov.dsystems.core.di.AppScope
 import online.arapov.dsystems.core.ui.Icon
 import online.arapov.dsystems.core.ui.Text
@@ -40,7 +41,7 @@ interface AppScreen {
 @ContributesBinding(AppScope::class)
 class AppScreenImpl @Inject constructor(
     private val button: Button,
-    private val promoBlock: PromoBlock
+    private val promoBlockDelegate: PromoBlockDelegate
 ) : AppScreen {
     @Composable
     override operator fun invoke() {
@@ -147,25 +148,9 @@ class AppScreenImpl @Inject constructor(
             else
                 AlnfTheme.promoBlockStyles.blue
 
-            // Class Cast Exception
-//            promoBlock(
-//                modifier = Modifier
-//                    .fillMaxWidth(),
-//                style = promoBlockStyle
-//            ) {
-//                Column(
-//                    modifier = Modifier.padding(
-//                        top = 16.dp,
-//                        bottom = 16.dp
-//                    ),
-//                    verticalArrangement = Arrangement.spacedBy(8.dp)
-//                ) {
-//                    Buttons(image, isMaterial)
-//                }
-//            }
-
-            // Ok!
-            promoBlock.Block(
+            // No Class Cast Exception
+            PromoBlock(
+                delegate = promoBlockDelegate,
                 modifier = Modifier
                     .fillMaxWidth(),
                 style = promoBlockStyle

@@ -8,16 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.squareup.anvil.annotations.ContributesBinding
-import online.arapov.dsystems.component.promo_block.PromoBlock
+import online.arapov.dsystems.component.promo_block.PromoBlockDelegate
 import online.arapov.dsystems.component.promo_block.PromoBlockStyle
 import online.arapov.dsystems.core.DefaultTheme
 import online.arapov.dsystems.core.di.AppScope
 import javax.inject.Inject
 
 @ContributesBinding(AppScope::class)
-class PromoBlockImpl @Inject constructor() : PromoBlock {
+class PromoBlockDelegateImpl @Inject constructor() : PromoBlockDelegate {
     @Composable
-    override fun Block(
+    override operator fun invoke(
         style: PromoBlockStyle,
         modifier: Modifier,
         content: @Composable (BoxScope.() -> Unit)
