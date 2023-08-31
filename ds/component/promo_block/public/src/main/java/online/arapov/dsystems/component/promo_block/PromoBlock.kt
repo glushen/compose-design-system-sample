@@ -1,15 +1,13 @@
 package online.arapov.dsystems.component.promo_block
 
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import javax.inject.Qualifier
 
-interface PromoBlock {
+@Qualifier
+annotation class PromoBlockComposable
 
-    @Composable
-    operator fun invoke(
-        style: PromoBlockStyle,
-        modifier: Modifier,
-        content: @Composable BoxScope.() -> Unit
-    )
-}
+typealias PromoBlock = @Composable (
+    style: PromoBlockStyle,
+    modifier: Modifier
+) -> Unit

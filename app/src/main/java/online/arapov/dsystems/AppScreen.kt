@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.squareup.anvil.annotations.ContributesBinding
 import online.arapov.dsystems.component.button.Button
 import online.arapov.dsystems.component.promo_block.PromoBlock
+import online.arapov.dsystems.component.promo_block.PromoBlockComposable
 import online.arapov.dsystems.core.di.AppScope
 import online.arapov.dsystems.core.ui.Icon
 import online.arapov.dsystems.core.ui.Text
@@ -40,7 +41,7 @@ interface AppScreen {
 @ContributesBinding(AppScope::class)
 class AppScreenImpl @Inject constructor(
     private val button: Button,
-    private val promoBlock: PromoBlock
+    @PromoBlockComposable private val promoBlock: PromoBlock
 ) : AppScreen {
     @Composable
     override operator fun invoke() {
@@ -151,17 +152,7 @@ class AppScreenImpl @Inject constructor(
                 modifier = Modifier
                     .fillMaxWidth(),
                 style = promoBlockStyle
-            ) {
-                Column(
-                    modifier = Modifier.padding(
-                        top = 16.dp,
-                        bottom = 16.dp
-                    ),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Buttons(image, isMaterial)
-                }
-            }
+            )
         }
     }
 
