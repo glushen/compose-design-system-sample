@@ -9,14 +9,14 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var screen: AppScreen
+    lateinit var screenHolder: AppScreenHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerAppComponent.create()
             .inject(this)
         setContent {
-            screen()
+            screenHolder.appScreen()
         }
     }
 }

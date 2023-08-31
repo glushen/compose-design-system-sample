@@ -12,21 +12,25 @@ import online.arapov.dsystems.core.DefaultTheme
 import online.arapov.dsystems.core.di.AppScope
 import javax.inject.Inject
 
+@Composable
+fun PromoBlockImpl(
+    style: PromoBlockStyle,
+    modifier: Modifier,
+    content: @Composable BoxScope.() -> Unit
+) {
+    DefaultTheme(theme = style.theme()) {
+        Box(
+            modifier = modifier
+                .background(style.backgroundColor(), style.shape)
+                .padding(8.dp),
+            content = content
+        )
+    }
+}
+
 @ContributesBinding(AppScope::class)
-class PromoBlockImpl @Inject constructor() : PromoBlock {
-    @Composable
-    override fun invoke(
-        style: PromoBlockStyle,
-        modifier: Modifier,
-        content: @Composable (BoxScope.() -> Unit)
-    ) {
-        DefaultTheme(theme = style.theme()) {
-            Box(
-                modifier = modifier
-                    .background(style.backgroundColor(), style.shape)
-                    .padding(8.dp),
-                content = content
-            )
-        }
+class PromoBlockDelegateHolderImpl @Inject constructor() : PromoBlockDelegateHolder {
+    override val delegate: PromoBlockType = { style, modifier, content ->
+        PromoBlockImpl(style, modifier, content)
     }
 }

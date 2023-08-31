@@ -22,7 +22,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.squareup.anvil.annotations.ContributesBinding
 import online.arapov.dsystems.component.button.Button
+import online.arapov.dsystems.component.button.ButtonDelegateHolder
+import online.arapov.dsystems.component.button.ButtonType
 import online.arapov.dsystems.component.promo_block.PromoBlock
+import online.arapov.dsystems.component.promo_block.PromoBlockDelegateHolder
+import online.arapov.dsystems.component.promo_block.PromoBlockType
 import online.arapov.dsystems.core.di.AppScope
 import online.arapov.dsystems.core.ui.Icon
 import online.arapov.dsystems.core.ui.Text
@@ -32,143 +36,82 @@ import online.arapov.dsystems.theme.material.MaterialTheme
 import online.arapov.dsystems.theme.material.gen.MaterialTheme
 import javax.inject.Inject
 
-interface AppScreen {
-    @Composable
-    operator fun invoke()
+typealias AppScreenType = @Composable () -> Unit
+
+interface AppScreenHolder {
+    val appScreen: AppScreenType
 }
 
 @ContributesBinding(AppScope::class)
-class AppScreenImpl @Inject constructor(
-    private val button: Button,
-    private val promoBlock: PromoBlock
-) : AppScreen {
-    @Composable
-    override operator fun invoke() {
-        var isDark by remember { mutableStateOf(false) }
-        var isCompat by remember { mutableStateOf(false) }
-        var isMaterial by remember { mutableStateOf(false) }
-
-        if (isMaterial) {
-            MaterialTheme(
-                isDark = isDark,
-                isCompatModeEnabled = isCompat
-            ) {
-                Content(
-                    isDark = isDark,
-                    darkModeChange = { isDark = !isDark },
-                    isCompat = isCompat,
-                    compatModeChange = { isCompat = !isCompat },
-                    isMaterial = isMaterial,
-                    themeChange = { isMaterial = !isMaterial }
-                )
-            }
-        } else {
-            AlnfTheme(
-                isDark = isDark
-            ) {
-                Content(
-                    isDark = isDark,
-                    darkModeChange = { isDark = !isDark },
-                    isCompat = isCompat,
-                    compatModeChange = { isCompat = !isCompat },
-                    isMaterial = isMaterial,
-                    themeChange = { isMaterial = !isMaterial }
-                )
-            }
-        }
+class AppScreenHolderImpl @Inject constructor(
+    private val buttonDelegateHolder: ButtonDelegateHolder,
+    private val promoBlockDelegateHolder: PromoBlockDelegateHolder
+) : AppScreenHolder {
+    override val appScreen: AppScreenType = {
+        AppScreenImpl(buttonDelegateHolder.delegate, promoBlockDelegateHolder.delegate)
     }
+}
 
+@Composable
+private fun AppScreenImpl(
+    buttonDelegate: ButtonType,
+    promoBlockDelegate: PromoBlockType,
+) {
+    var isDark by remember { mutableStateOf(false) }
+    var isCompat by remember { mutableStateOf(false) }
+    var isMaterial by remember { mutableStateOf(false) }
 
-    @Composable
-    private fun Content(
-        isDark: Boolean = false,
-        darkModeChange: () -> Unit = {},
-        isCompat: Boolean = false,
-        compatModeChange: () -> Unit = {},
-        isMaterial: Boolean = false,
-        themeChange: () -> Unit = {}
-    ) {
-        val image = ImageVector.vectorResource(id = R.drawable.ic_android_black_24dp)
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+    if (isMaterial) {
+        MaterialTheme(
+            isDark = isDark,
+            isCompatModeEnabled = isCompat
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                val buttonStyle = if (isMaterial)
-                    MaterialTheme.buttonStyles.primary
-                else
-                    AlnfTheme.buttonStyles.primary
-                button(
-                    title = if (isMaterial) "Material Theme" else "Alnf Theme",
-                    onClick = themeChange,
-                    style = buttonStyle,
-                    modifier = Modifier,
-                    iconLeft = null,
-                    enabled = true
-                )
-                button(
-                    title = if (isDark) "Dark Theme" else "Light Theme",
-                    onClick = darkModeChange,
-                    style = buttonStyle,
-                    modifier = Modifier,
-                    iconLeft = null,
-                    enabled = true
-                )
-                if (isMaterial) {
-                    button(
-                        title = if (isCompat) "Compat Enabled" else "Compat Disabled",
-                        onClick = compatModeChange,
-                        style = buttonStyle,
-                        modifier = Modifier,
-                        iconLeft = null,
-                        enabled = true
-                    )
-                }
-            }
-            Text(
-                text = stringResource(id = R.string.lorem_ipsum),
-                style = TextStyle.Default
+            Content(
+                buttonDelegate,
+                promoBlockDelegate,
+                isDark = isDark,
+                darkModeChange = { isDark = !isDark },
+                isCompat = isCompat,
+                compatModeChange = { isCompat = !isCompat },
+                isMaterial = isMaterial,
+                themeChange = { isMaterial = !isMaterial }
             )
-            Text(
-                text = "Buttons:",
-                modifier = Modifier.padding(top = 8.dp),
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold
-                )
+        }
+    } else {
+        AlnfTheme(
+            isDark = isDark
+        ) {
+            Content(
+                buttonDelegate,
+                promoBlockDelegate,
+                isDark = isDark,
+                darkModeChange = { isDark = !isDark },
+                isCompat = isCompat,
+                compatModeChange = { isCompat = !isCompat },
+                isMaterial = isMaterial,
+                themeChange = { isMaterial = !isMaterial }
             )
-            Buttons(image, isMaterial)
-            val promoBlockStyle = if (isMaterial)
-                MaterialTheme.promoBlockStyles.blue
-            else
-                AlnfTheme.promoBlockStyles.blue
-
-            promoBlock(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                style = promoBlockStyle
-            ) {
-                Column(
-                    modifier = Modifier.padding(
-                        top = 16.dp,
-                        bottom = 16.dp
-                    ),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Buttons(image, isMaterial)
-                }
-            }
         }
     }
+}
 
-    @Composable
-    private fun Buttons(
-        image: ImageVector,
-        isMaterial: Boolean
+@Composable
+private fun Content(
+    buttonDelegate: ButtonType,
+    promoBlockDelegate: PromoBlockType,
+    isDark: Boolean = false,
+    darkModeChange: () -> Unit = {},
+    isCompat: Boolean = false,
+    compatModeChange: () -> Unit = {},
+    isMaterial: Boolean = false,
+    themeChange: () -> Unit = {}
+) {
+    val image = ImageVector.vectorResource(id = R.drawable.ic_android_black_24dp)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -178,73 +121,135 @@ class AppScreenImpl @Inject constructor(
                 MaterialTheme.buttonStyles.primary
             else
                 AlnfTheme.buttonStyles.primary
-            button(
-                title = "Primary",
-                onClick = {},
+            Button(
+                delegate = buttonDelegate,
+                title = if (isMaterial) "Material Theme" else "Alnf Theme",
+                onClick = themeChange,
                 style = buttonStyle,
-                modifier = Modifier,
-                iconLeft = null,
-                enabled = true
             )
-            button(
-                title = "Icon",
-                onClick = {},
-                iconLeft = {
-                    val painter = rememberVectorPainter(image = image)
-                    Icon(
-                        painter = painter
-                    )
-                },
+            Button(
+                delegate = buttonDelegate,
+                title = if (isDark) "Dark Theme" else "Light Theme",
+                onClick = darkModeChange,
                 style = buttonStyle,
-                modifier = Modifier,
-                enabled = true
             )
-            button(
-                title = "Disabled",
-                onClick = {},
-                enabled = false,
-                style = buttonStyle,
-                modifier = Modifier,
-                iconLeft = null,
-            )
+            if (isMaterial) {
+                Button(
+                    delegate = buttonDelegate,
+                    title = if (isCompat) "Compat Enabled" else "Compat Disabled",
+                    onClick = compatModeChange,
+                    style = buttonStyle,
+                )
+            }
         }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        Text(
+            text = stringResource(id = R.string.lorem_ipsum),
+            style = TextStyle.Default
+        )
+        Text(
+            text = "Buttons:",
+            modifier = Modifier.padding(top = 8.dp),
+            style = TextStyle(
+                fontWeight = FontWeight.Bold
+            )
+        )
+        Buttons(buttonDelegate, image, isMaterial)
+        val promoBlockStyle = if (isMaterial)
+            MaterialTheme.promoBlockStyles.blue
+        else
+            AlnfTheme.promoBlockStyles.blue
+
+        PromoBlock(
+            delegate = promoBlockDelegate,
+            modifier = Modifier
+                .fillMaxWidth(),
+            style = promoBlockStyle
         ) {
-            val buttonStyle = if (isMaterial)
-                MaterialTheme.buttonStyles.secondary
-            else
-                AlnfTheme.buttonStyles.secondary
-            button(
-                title = "Secondary",
-                style = buttonStyle,
-                onClick = {},
-                modifier = Modifier,
-                iconLeft = null,
-                enabled = true
-            )
-            button(
-                title = "Icon",
-                onClick = {},
-                style = buttonStyle,
-                iconLeft = {
-                    val painter = rememberVectorPainter(image = image)
-                    Icon(
-                        painter = painter
-                    )
-                },
-                modifier = Modifier,
-                enabled = true
-            )
-            button(
-                title = "Disabled",
-                onClick = {},
-                style = buttonStyle,
-                enabled = false,
-                modifier = Modifier,
-                iconLeft = null,
-            )
+            Column(
+                modifier = Modifier.padding(
+                    top = 16.dp,
+                    bottom = 16.dp
+                ),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Buttons(buttonDelegate, image, isMaterial)
+            }
         }
+    }
+}
+
+@Composable
+private fun Buttons(
+    buttonDelegate: ButtonType,
+    image: ImageVector,
+    isMaterial: Boolean
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        val buttonStyle = if (isMaterial)
+            MaterialTheme.buttonStyles.primary
+        else
+            AlnfTheme.buttonStyles.primary
+        Button(
+            delegate = buttonDelegate,
+            title = "Primary",
+            onClick = {},
+            style = buttonStyle,
+        )
+        Button(
+            delegate = buttonDelegate,
+            title = "Icon",
+            onClick = {},
+            iconLeft = {
+                val painter = rememberVectorPainter(image = image)
+                Icon(
+                    painter = painter
+                )
+            },
+            style = buttonStyle,
+        )
+        Button(
+            delegate = buttonDelegate,
+            title = "Disabled",
+            onClick = {},
+            enabled = false,
+            style = buttonStyle,
+        )
+    }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        val buttonStyle = if (isMaterial)
+            MaterialTheme.buttonStyles.secondary
+        else
+            AlnfTheme.buttonStyles.secondary
+        Button(
+            delegate = buttonDelegate,
+            title = "Secondary",
+            style = buttonStyle,
+            onClick = {},
+        )
+        Button(
+            delegate = buttonDelegate,
+            title = "Icon",
+            onClick = {},
+            style = buttonStyle,
+            iconLeft = {
+                val painter = rememberVectorPainter(image = image)
+                Icon(
+                    painter = painter
+                )
+            },
+        )
+        Button(
+            delegate = buttonDelegate,
+            title = "Disabled",
+            onClick = {},
+            style = buttonStyle,
+            enabled = false,
+        )
     }
 }
